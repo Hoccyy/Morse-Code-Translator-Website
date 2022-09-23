@@ -1,0 +1,81 @@
+.mainBackground{background-color: rgb(218, 218, 218);}
+
+.title-item{
+    list-style: none;
+    display: inline-block;
+    position: relative;
+}
+
+.titleBar{
+    /*background-color: red;*/
+    width: max;
+    text-align: center;
+}
+
+.title{
+    font-size: 50px;
+    position: inherit;
+
+}
+.arrowBars{
+    position: relative;
+    top: 11px;
+    margin: 0px 80px 0px 80px;
+}
+
+#englishTextBox{
+    height: 500px; width: 50%; font-size: 60px;
+    border-bottom-left-radius: 15px;
+}
+#morseTextBox{
+    height: 500px; width: 50%; font-size: 60px;
+    border-bottom-right-radius: 15px;
+}
+
+.textBoxes{
+    list-style: none;
+    display: flex;
+    /*background-color: red;*/
+    width: 100%;
+}
+
+.buttonSet1{
+    height: 100px; width: 300px; font-size: 40px; background-color: rgb(61, 123, 204);
+    color: #fff;
+    margin: 20px 30px 0px 30px;
+    border-radius: 40px;
+    box-shadow: 6px 8px 10px 2px black;
+
+}
+#buttonSetTranslate{
+    height: 100px; width: 300px; font-size: 40px;
+    color: rgb(235, 235, 235); background-color: rgb(170, 34, 34);
+    margin: 20px 30px 0px 30px;
+    border-radius: 40px;
+    animation: translateButton 3s ease-in;
+    box-shadow: 6px 8px 15px 2px black;
+}
+
+#buttonSetTranslate:hover{
+    color: rgb(170, 34, 34); background-color: rgb(0, 0, 0);
+    transition: 0.4s ease-in;
+}
+
+/*Animations list*/
+@keyframes translateButton{
+    0%{
+        transform:rotate(0deg)
+    }
+    25%{
+        transform:rotate(5deg)
+    }
+    50%{
+        transform:rotate(-5deg)
+    }
+    750%{
+        transform:rotate(5deg)
+    }
+    100%{
+        transform:rotate(0deg)
+    }
+}

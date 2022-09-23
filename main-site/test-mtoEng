@@ -1,0 +1,23 @@
+var morseAlphabet2 = {"----": "0", "/": " ", ".----": "1", "..---": "2", "...--": "3", "....-":"4", ".....":"5", "-....":"6", "--...":"7","---..": "8", "----.": "9", ".-": "a", "-...":"b", "-.-.":"c", "-..": "d", ".":"e", "..-.":"f", "--.":"g", "....":"h", "..":"i", ".---": "j", "-.-": "k", ".-..":"l", "--":"m", "-.":"n", "---":"o", ".--.":"p", "--.-":"q", ".-.":"r", "...":"s", "-": "t", "..-": "u", "...-": "v", ".--": "w", "-..-":"x", "-.--":"y", "--..":"z", ".-.-.-": ".", "--..--":",", "..--..":"?", "..--.":"!", "---...":":", ".-..-.": '"', ".----.":"\'", "-...-": "="};
+
+var bug = ".-.  ---  --  .--.  /  -..  ---  --.  ...";
+let tempvar = 0; let condy = true;
+let tempString = "";
+
+function morseToAlphabet(){
+    tempvar = 0;
+    while (condy == true) {
+        if(bug[tempvar] == " "){condy = false;}
+        else{
+            for (tempvar; bug[tempvar] != " " ; tempvar++){
+                tempString += bug[tempvar];
+            }
+        }//console.log (tempString);
+    }
+    bug = bug.replace(tempString,"");
+}
+morseToAlphabet();
+
+engTranslation = morseAlphabet2[tempString];
+console.log (tempString + "\n" + bug);
+console.log(engTranslation);
