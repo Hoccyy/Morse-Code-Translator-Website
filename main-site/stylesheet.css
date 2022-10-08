@@ -1,4 +1,6 @@
-.mainBackground{background-color: rgb(218, 218, 218);}
+.mainBackground{background-color: rgb(218, 218, 218); width: 100%; margin: 0;
+    /*animation: colorTransition1 3s ease-in;*/
+}
 
 .title-item{
     list-style: none;
@@ -24,11 +26,11 @@
 }
 
 #englishTextBox{
-    height: 500px; width: 50%; font-size: 60px;
+    height: 250px; width: 50%; font-size: 60px;
     border-bottom-left-radius: 15px;
 }
 #morseTextBox{
-    height: 500px; width: 50%; font-size: 60px;
+    height: 250px; width: 50%; font-size: 60px;
     border-bottom-right-radius: 15px;
 }
 
@@ -40,26 +42,104 @@
 }
 
 .buttonSet1{
-    height: 100px; width: 300px; font-size: 40px; background-color: rgb(61, 123, 204);
-    color: #fff;
+    height: 100px; width: 20%; font-size: 200%; background-color: rgba(122, 122, 122, 0.178);
+    /*color: #fff;*/
+    color: #000;
     margin: 20px 30px 0px 30px;
     border-radius: 40px;
     box-shadow: 6px 8px 10px 2px black;
+    
+    text-align: center;
+    min-width: 220px;
+
 
 }
 #buttonSetTranslate{
-    height: 100px; width: 300px; font-size: 40px;
+    /*height: 100px; width: 300px; font-size: 40px;*/
+    height: 100px; width: 18%; font-size: 200%;
     color: rgb(235, 235, 235); background-color: rgb(170, 34, 34);
     margin: 20px 30px 0px 30px;
     border-radius: 40px;
     animation: translateButton 3s ease-in;
     box-shadow: 6px 8px 15px 2px black;
+
+    min-width: 220px; text-align: center;
 }
 
 #buttonSetTranslate:hover{
     color: rgb(170, 34, 34); background-color: rgb(0, 0, 0);
     transition: 0.4s ease-in;
 }
+
+/**/
+#mainBG{
+    background-color: black;
+    height: 40px; width: 200px;
+    border-radius: 80px;
+    margin: 4px 0px 10px 0px;
+    padding-top: 3px;
+}
+
+#secondBG{
+    background-color: rgb(241, 241, 241);
+    height: 30px; width: 45%;
+    /*border-radius: 100%;*/
+    border-radius: 80px;
+    position: relative;
+    top: 6.5%; left: 3%;
+    /*animation: toggleMode1 3s;*/
+    
+}
+
+.toggleContainer{
+    margin-top: 0%;
+    /*padding-left: 84%;*/
+    padding-left: 84%;
+
+    width: 40px;
+}
+
+#mainBody{
+    /*animation: colorTransition1 5s ease-in;*/
+}
+
+@keyframes toggleMode1 {
+    0% {left: 3%;}
+    100% {left: 52%;}
+}
+
+@keyframes toggleMode2 {
+    0% {left: 52%}
+    100% {left:3%;}
+}
+
+/* Color transitions*/
+@keyframes colorTransition1{
+    0% {background-color: rgb(218, 218, 218); }
+    100%{background-color: #2B2B2B;}
+}
+@keyframes colorTransition2{
+    0%{background-color: #2B2B2B;}
+    100% {background-color: rgb(218, 218, 218);}
+}
+@keyframes textColorTransition1{
+    0% {color: black;}
+    100%{color: #fff;}
+}
+@keyframes textColorTransition2{
+    0% {color: #fff;}
+    100%{color: black;}
+}
+
+@keyframes textBox1{
+    0%{color : #000;}
+    100%{color: #fff;}
+}
+@keyframes textBox2{
+    0%{color: #fff;}
+    100%{color : #000;}
+}
+/**/
 
 /*Animations list*/
 @keyframes translateButton{
@@ -77,5 +157,14 @@
     }
     100%{
         transform:rotate(0deg)
+    }
+}
+
+@keyframes resizeButtonMargin{
+    0%{
+        margin: 1% 0% 0% 0%;
+    }
+    50%{
+        margin: 10% 0% 0% 0%;
     }
 }

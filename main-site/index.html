@@ -1,13 +1,24 @@
 <!DOCTYPE HTML>
     <link rel="stylesheet" href="stylesheet.css">
-    <body class="mainBackground">
+    <body class="mainBackground" id="mainBackg">
         <div>
             <div class="titles">
                 <ul class="titleBar">
-                    <li class="title-item"> <h3 class="title">English</h1> </li>
-                    <li class="title-item"> <img class="arrowBars" src="images/arrow.png" style="height: 50px;"> </li>
-                    <li class="title-item"> <h1 class="title">Morse-Code</h1> </li>
+                    <li class="title-item"> <h3 id="titleWord1" class="title">English</h1> </li>
+                    <li class="title-item"> <img draggable="false" id="arrow" class="arrowBars" src="images/arrow.png" style="height: 50px;"> </li>
+                    <li class="title-item"> <h1 id="titleWord2" class="title">Morse-Code</h1> </li>
                 </ul>
+                <!---->
+                <div class="toggleContainer"> <!-- Main container for toggle button-->
+            
+                    <div id="mainBG">
+                        <div id="secondBG">
+                        </div>
+                    </div>
+                
+                </div>
+                <!---->
+
             </div>
 
             <div style="background-color: black; height:8px;"></div>
@@ -15,10 +26,10 @@
                 <textarea autofocus spellcheck="false" id="englishTextBox" placeholder="English goes here" style="resize: none;"></textarea>
                 <textarea disabled id="morseTextBox" placeholder="Translations here" style="resize: none;"></textarea>
             </div>
-            <div style="text-align:center;">
-                <button class="buttonSet1"><img style="height: 50%; color:white;" src="images/clipboardImage.png"></button>
-                <button class="buttonSet1">Download</button>
-                <button class="buttonSet1">Audio</button>
+            <div id="button-Frame" style="text-align:center;">
+                <button title="Copy Text" id="copyToClip1" class="buttonSet1"><img id="copyToClip2" draggable="false" title="Copy Text" style="height: 50%; color:white;" src="images/clipboardImage.png"></button>
+                <button id="buttonText" class="buttonSet1">Download</button>
+                <button id="buttonText2" class="buttonSet1">Audio</button>
                 <button id="buttonSetTranslate">Translate</button>
             </div>
         </div>
@@ -26,7 +37,7 @@
     <footer style="background-color: white; display: inline;">
         <div >
             <div style="display: flex;">
-                <img style="height:80px; margin-top: 50px;" src="images/github.png">
+                <img draggable="false" style="height:80px; margin-top: 50px;" src="images/github.png">
                 <!-- <h1 style="margin-left:70%;">2022</h1> -->
             </div>
         </div>
