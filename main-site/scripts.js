@@ -18,6 +18,7 @@ function translationFunction() {
     function translationCleaning(){
         //morseTranslation = morseTranslation.replace("  ", "");
         morseTranslation = morseTranslation.replaceAll("undefined", "");
+        morseTranslation = morseTranslation.replaceAll("NaN", "");
         morseTranslation = morseTranslation.trim();
         morseTranslation = morseTranslation.replaceAll("  ", " ");
     }
@@ -126,8 +127,12 @@ function downloadFinal(){
 downloadButton.addEventListener("click", downloadFinal);
 // D.
 
-//Main sector
+
+
+  
+  //Main sector
 translateButton.addEventListener("click", translationFunction);
+
 
 
 //alert(windowHeight);
