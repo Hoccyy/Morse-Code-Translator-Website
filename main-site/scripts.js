@@ -17,6 +17,15 @@ function translationFunction() {
 
     if (engText != ""){ //Checks if empty Step 0
 
+    function titleSwap(mode){
+        if (mode){ document.getElementById("titleWord2").innerHTML = "Morse-Code"; document.getElementById("titleWord1").innerHTML = "English";
+            document.getElementById("titleBar0").style = "margin-right: 0%;";        
+    }
+        if (!mode){ document.getElementById("titleWord2").innerHTML = "English"; document.getElementById("titleWord1").innerHTML = "Morse-Code";
+            document.getElementById("titleBar0").style = "margin-right: 9%;";
+    }
+    }
+    
     function translationCleaning(transValue){
         //morseTranslation = morseTranslation.replace("  ", "");
         transValue = transValue.replaceAll("undefined", "");
@@ -72,6 +81,8 @@ function translationFunction() {
         var morseTranslation;
         let tempSizeVar = 0;
         
+        titleSwap(boxSelection); // Swaps the page titles
+
         for (textSize; tempSizeVar < textSize; tempSizeVar++){
             morseTranslation += morseAlphabet[engText[tempSizeVar]];
         }
@@ -81,6 +92,8 @@ function translationFunction() {
         //alert(morseTranslation);
     }
     else{
+        titleSwap(boxSelection); // Swaps the page titles
+        
         let newVal = morseToEng(engText);
         newVal = translationCleaning(newVal);
         morseTextBox.value = newVal;
