@@ -2,6 +2,8 @@
 var morseAlphabet = {" ": "\/", "a": " .- ", "b": "  -... ", "c": " -.-. ", "d": " -.. ", "e": " . ", "f": " ..-. ", "g": " --. ", "h": " .... ", "i": " .. ", "j": " .--- ", "k": " -.- ", "l": " .-.. ", "m": " -- ", "n": " -. ", "o": " --- ", "p": " .--. ", "q": " --.- ", "r": " .-. ", "s": " ... ", "t": " - ", "u": " ..- ", "v": " ...- ", "w": " .-- ", "x": " -..- ", "y": " -.-- ", "z": " --.. ", "1": " .---- ", "2": " ..--- ", "3": " ...-- ", "4": " ....- ", "5": " ..... ", "6": " -.... ", "7": " --... ", "8": " ---.. ", "9": " ----. ", "0": " ----- ", ".": " .-.-.- ", ",": " --..-- ", "?": " ..--.. ", "!": " ..--. ", ":": " ---... ", "\"": " .-..-. ", "\'": " .----. ", "=": " -...- "};
 var morseAlphabet2 = {"----": "0", "/": " ", ".----": "1", "..---": "2", "...--": "3", "....-":"4", ".....":"5", "-....":"6", "--...":"7","---..": "8", "----.": "9", ".-": "a", "-...":"b", "-.-.":"c", "-..": "d", ".":"e", "..-.":"f", "--.":"g", "....":"h", "..":"i", ".---": "j", "-.-": "k", ".-..":"l", "--":"m", "-.":"n", "---":"o", ".--.":"p", "--.-":"q", ".-.":"r", "...":"s", "-": "t", "..-": "u", "...-": "v", ".--": "w", "-..-":"x", "-.--":"y", "--..":"z", ".-.-.-": ".", "--..--":",", "..--..":"?", "..--.":"!", "---...":":", ".-..-.": '"', ".----.":"\'", "-...-": "="};
 
+var alphaNume = {"a": " .- ", "b": "  -... ", "c": " -.-. ", "d": " -.. ", "e": " . ", "f": " ..-. ", "g": " --. ", "h": " .... ", "i": " .. ", "j": " .--- ", "k": " -.- ", "l": " .-.. ", "m": " -- ", "n": " -. ", "o": " --- ", "p": " .--. ", "q": " --.- ", "r": " .-. ", "s": " ... ", "t": " - ", "u": " ..- ", "v": " ...- ", "w": " .-- ", "x": " -..- ", "y": " -.-- ", "z": " --.. ", "1": " .---- ", "2": " ..--- ", "3": " ...-- ", "4": " ....- ", "5": " ..... ", "6": " -.... ", "7": " --... ", "8": " ---.. ", "9": " ----. ", "0": " ----- "}
+
 var translateButton = document.getElementById("buttonSetTranslate");
 var boxSelection = true; // true is eng -> Morse and false is opposite
 var buttonDiv = document.getElementById("button-Frame");
@@ -13,15 +15,58 @@ function translationFunction() {
     engText = engText.toLowerCase(); //Debug common letter conversion - alert(engText);
     let textSize = engText.length;
 
-    if (engText != ""){ //Checks if empty
+    if (engText != ""){ //Checks if empty Step 0
 
-    function translationCleaning(){
+    function translationCleaning(transValue){
         //morseTranslation = morseTranslation.replace("  ", "");
-        morseTranslation = morseTranslation.replaceAll("undefined", "");
-        morseTranslation = morseTranslation.replaceAll("NaN", "");
-        morseTranslation = morseTranslation.trim();
-        morseTranslation = morseTranslation.replaceAll("  ", " ");
+        transValue = transValue.replaceAll("undefined", "");
+        transValue = transValue.replaceAll("NaN", "");
+        transValue = transValue.trim();
+        transValue = transValue.replaceAll("  ", " ");
+        
+        return transValue;
     }
+
+    // Determines Morse or Eng
+    function morseToEng(x){
+        x += " ";
+        
+        var tempCharM = "";
+        var tempString = [];
+        var morseToEngTranslation = "";
+        
+        for (var g = 0 ; g < x.length ; g++){
+            if(x[g] != " "){
+                tempCharM += x[g];
+            }
+            else{
+                tempString.push(tempCharM);
+                //dog = dog.replace(tempCharM);
+                tempCharM = "";
+            }
+        }
+        // Gives english version of the morse code
+        for (var ns = 0; ns < tempString.length; ns++){
+            morseToEngTranslation += (morseAlphabet2[tempString[ns]]);
+        }
+        //morseToEngTranslation = translationCleaning(morseToEngTranslation);
+        //alert(morseToEngTranslation);
+        return morseToEngTranslation;
+    }
+
+    function checker(x){
+        let engChek = 0;
+        for (var v=0; v < 3; v++){
+            if (alphaNume[x[v]]) {engChek++;}
+            else{continue;};
+        }
+        ((engChek == 1) ? boxSelection = true : boxSelection = false)
+        alert(boxSelection);
+        //alert(engChek);
+    }
+    checker(engText);
+    // Det.
+
 
     if (boxSelection) {
         var morseTranslation;
@@ -31,9 +76,14 @@ function translationFunction() {
             morseTranslation += morseAlphabet[engText[tempSizeVar]];
         }
 
-        translationCleaning();
+        morseTranslation = translationCleaning(morseTranslation);
         morseTextBox.value = morseTranslation;
         //alert(morseTranslation);
+    }
+    else{
+        let newVal = morseToEng(engText);
+        newVal = translationCleaning(newVal);
+        morseTextBox.value = newVal;
     }
     //Debugging - alert(engText);
 }
