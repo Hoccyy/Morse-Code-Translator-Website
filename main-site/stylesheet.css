@@ -28,6 +28,7 @@
 #englishTextBox{
     height: 250px; width: 50%; font-size: 60px;
     border-bottom-left-radius: 15px;
+    background-color: white;
 }
 #morseTextBox{
     height: 250px; width: 50%; font-size: 60px;
@@ -42,7 +43,7 @@
 }
 
 .buttonSet1{
-    height: 100px; width: 20%; font-size: 200%; background-color: rgba(122, 122, 122, 0.178);
+    height: 93px; width: 20%; font-size: 200%; background-color: rgba(122, 122, 122, 0.178);
     /*color: #fff;*/
     color: #000;
     margin: 20px 30px 0px 30px;
@@ -56,7 +57,7 @@
 }
 #buttonSetTranslate{
     /*height: 100px; width: 300px; font-size: 40px;*/
-    height: 100px; width: 18%; font-size: 200%;
+    height: 93px; width: 18%; font-size: 200%;
     color: rgb(235, 235, 235); background-color: rgb(170, 34, 34);
     margin: 20px 30px 0px 30px;
     border-radius: 40px;
@@ -98,9 +99,45 @@
 
     width: 40px;
 }
-
+/*
 #mainBody{
-    /*animation: colorTransition1 5s ease-in;*/
+    animation: colorTransition1 5s ease-in;
+}
+*/
+
+.frame1Cont{
+    display:flex;
+    margin: auto;
+    /*background-color: black;*/
+    margin-top: 8%;
+    width: 100%; height: 91px;
+}
+
+.frame1{
+    margin: auto;
+    background-color: rgb(168, 168, 168);
+    width: 47%; height: 300px;
+    border-radius: 15px;
+}
+.frame2{
+    margin: auto;
+    background-color: rgb(168, 168, 168);
+    width: 47%; height: 300px;
+    border-radius: 15px;
+}
+
+.errorDiv{
+    height: 90px; width: 40%;
+    background-color: #fff;
+    margin: 15px 10px 0px 10px;
+    border-radius: 10px;
+}
+
+
+/*ANIMS LIST*/
+@keyframes rotating{
+    0%{transform:rotate(0deg)}
+    100%{transform:rotate(45deg)}
 }
 
 @keyframes toggleMode1 {
@@ -142,6 +179,11 @@
 /**/
 
 /*Animations list*/
+@keyframes inputErrorAnim1{
+    0%{border: solid 4px red;}
+    0%{border: solid 4px blue;}
+}
+
 @keyframes translateButton{
     0%{
         transform:rotate(0deg)

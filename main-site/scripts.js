@@ -1,6 +1,8 @@
 //By Hoccyy
 var morseAlphabet = {" ": "\/", "a": " .- ", "b": "  -... ", "c": " -.-. ", "d": " -.. ", "e": " . ", "f": " ..-. ", "g": " --. ", "h": " .... ", "i": " .. ", "j": " .--- ", "k": " -.- ", "l": " .-.. ", "m": " -- ", "n": " -. ", "o": " --- ", "p": " .--. ", "q": " --.- ", "r": " .-. ", "s": " ... ", "t": " - ", "u": " ..- ", "v": " ...- ", "w": " .-- ", "x": " -..- ", "y": " -.-- ", "z": " --.. ", "1": " .---- ", "2": " ..--- ", "3": " ...-- ", "4": " ....- ", "5": " ..... ", "6": " -.... ", "7": " --... ", "8": " ---.. ", "9": " ----. ", "0": " ----- ", ".": " .-.-.- ", ",": " --..-- ", "?": " ..--.. ", "!": " ..--. ", ":": " ---... ", "\"": " .-..-. ", "\'": " .----. ", "=": " -...- "};
-var morseAlphabet2 = {"----": "0", "/": " ", ".----": "1", "..---": "2", "...--": "3", "....-":"4", ".....":"5", "-....":"6", "--...":"7","---..": "8", "----.": "9", ".-": "a", "-...":"b", "-.-.":"c", "-..": "d", ".":"e", "..-.":"f", "--.":"g", "....":"h", "..":"i", ".---": "j", "-.-": "k", ".-..":"l", "--":"m", "-.":"n", "---":"o", ".--.":"p", "--.-":"q", ".-.":"r", "...":"s", "-": "t", "..-": "u", "...-": "v", ".--": "w", "-..-":"x", "-.--":"y", "--..":"z", ".-.-.-": ".", "--..--":",", "..--..":"?", "..--.":"!", "---...":":", ".-..-.": '"', ".----.":"\'", "-...-": "="};
+var morseAlphabet2 = {"----": "0", "|": " ", "/": " ", ".----": "1", "..---": "2", "...--": "3", "....-":"4", ".....":"5", "-....":"6", "--...":"7","---..": "8", "----.": "9", ".-": "a", "-...":"b", "-.-.":"c", "-..": "d", ".":"e", "..-.":"f", "--.":"g", "....":"h", "..":"i", ".---": "j", "-.-": "k", ".-..":"l", "--":"m", "-.":"n", "---":"o", ".--.":"p", "--.-":"q", ".-.":"r", "...":"s", "-": "t", "..-": "u", "...-": "v", ".--": "w", "-..-":"x", "-.--":"y", "--..":"z", ".-.-.-": ".", "--..--":",", "..--..":"?", "..--.":"!", "---...":":", ".-..-.": '"', ".----.":"\'", "-...-": "="};
+
+//var invalidCharALphabet = ["`", "~", "#", "[", "]", "{", "}", "$", "%", "^", "*", "<", ">", "\\", ""];
 
 var alphaNume = {"a": " .- ", "b": "  -... ", "c": " -.-. ", "d": " -.. ", "e": " . ", "f": " ..-. ", "g": " --. ", "h": " .... ", "i": " .. ", "j": " .--- ", "k": " -.- ", "l": " .-.. ", "m": " -- ", "n": " -. ", "o": " --- ", "p": " .--. ", "q": " --.- ", "r": " .-. ", "s": " ... ", "t": " - ", "u": " ..- ", "v": " ...- ", "w": " .-- ", "x": " -..- ", "y": " -.-- ", "z": " --.. ", "1": " .---- ", "2": " ..--- ", "3": " ...-- ", "4": " ....- ", "5": " ..... ", "6": " -.... ", "7": " --... ", "8": " ---.. ", "9": " ----. ", "0": " ----- "}
 
@@ -10,10 +12,43 @@ var buttonDiv = document.getElementById("button-Frame");
 //Text boxes
 var engTextBox = document.getElementById("englishTextBox"); var morseTextBox = document.getElementById("morseTextBox");
 //
+var invalidString = "";
+var errorLabel = document.getElementById("errorBox");
+var errorMessage = document.getElementById("invalChar");
+
+
+
 function translationFunction() {
     var engText = document.getElementById("englishTextBox").value;
+
+    
+
     engText = engText.toLowerCase(); //Debug common letter conversion - alert(engText);
     let textSize = engText.length;
+
+    // clears invalid characters, Translation mode
+    if (textSize <= 0 ){
+        invalidString = "";
+        errorMessage.innerHTML = "";
+    }
+
+    function invalidChars(truthTest){
+        if (engText.length == 0){invalidString = ""}else {
+        if (truthTest){
+        for (var xyz = 0; xyz < engText.length; xyz++){
+            if (!morseAlphabet[engText[xyz]]){
+                //alert (engText[xyz]);
+                if (!(invalidString.includes(engText[xyz]))){
+                    //alert(engText[xyz]);
+                    invalidString += engText[xyz];
+                }
+            };
+        }
+        }
+        if (invalidString.length>0){//alert("Inval chars : " + invalidString);
+        errorMessage.innerHTML = invalidString; }}
+    }
+
 
     if (engText != ""){ //Checks if empty Step 0
 
@@ -65,17 +100,21 @@ function translationFunction() {
 
     function checker(x){
         let engChek = 0;
-        for (var v=0; v < 3; v++){
+        for (var v=0; v < 4; v++){
             if (alphaNume[x[v]]) {engChek++;}
             else{continue;};
         }
-        ((engChek == 1) ? boxSelection = true : boxSelection = false)
-        alert(boxSelection);
+        ((engChek > 0) ? boxSelection = true : boxSelection = false)
+        engChek = 0;
+        //alert(boxSelection);
         //alert(engChek);
     }
     checker(engText);
     // Det.
 
+    // Shows invalid characters
+    invalidChars(boxSelection);
+    //
 
     if (boxSelection) {
         var morseTranslation;
@@ -93,12 +132,12 @@ function translationFunction() {
     }
     else{
         titleSwap(boxSelection); // Swaps the page titles
-        
+        engText = engText.replaceAll("_", "-");
+
         let newVal = morseToEng(engText);
         newVal = translationCleaning(newVal);
         morseTextBox.value = newVal;
     }
-    //Debugging - alert(engText);
 }
 }
 var windowHeight = window.innerHeight;
@@ -125,7 +164,9 @@ function toggleFunctions(){
             title1.style = "animation: textColorTransition1 1.1s ease-in; color: #fff;";
             title2.style = "animation: textColorTransition1 1.1s ease-in; color: #fff;";
             arrow.src="images/arrowDarkMode1.png";
-            morseTextBox.style = "animation: textBox1 ease-in; color: #fff;";
+            morseTextBox.style = "resize: none;animation: textBox1 ease-in; color: #fff;";
+
+            //engTextBox.style = "animation: textBox2 3s ease-in;";
             buttonsText.style = "animation: textColorTransition1 1.1s ease-in; color: #fff;";
             buttonsText2.style = "animation: textColorTransition1 1.1s ease-in; color: #fff;";
             //document.getElementById("mainBackground").style = "animation: colorTransition1 1.1s ease-in; background-color: #2B2B2B;";
@@ -197,9 +238,13 @@ downloadButton.addEventListener("click", downloadFinal);
 translateButton.addEventListener("click", translationFunction);
 
 
-
 //alert(windowHeight);
 
 if (windowHeight > 700){
     buttonDiv.style=("animation: resizeButtonMargin 2s ease-in; margin:10% 0% 0% 0%; text-align:center;");
 }
+
+function windowResizeFunc(){
+    console.log(window.innerHeight);
+}
+window.addEventListener("resize", windowResizeFunc);

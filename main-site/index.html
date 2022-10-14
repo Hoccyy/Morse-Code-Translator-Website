@@ -2,6 +2,11 @@
     <link rel="stylesheet" href="stylesheet.css">
     <body class="mainBackground" id="mainBackg">
         <div>
+            <!----
+            <nav class="fixedTopBar" style="color:white; font-size: 30px;">
+                <h1 class="topBarChildren" >☲</h1>
+            </nav>
+            -->
             <div class="titles">
                 <ul id="titleBar0" class="titleBar">
                     <li class="title-item"> <h3 id="titleWord1" class="title">English</h1> </li>
@@ -23,8 +28,11 @@
 
             <div style="background-color: black; height:8px;"></div>
             <div class="textBoxes">
-                <textarea autofocus spellcheck="false" id="englishTextBox" placeholder="English goes here" style="resize: none;"></textarea>
+                <textarea onkeyup="translationFunction()" autofocus spellcheck="false" id="englishTextBox" placeholder="Enter text or morse code" style="resize: none;"></textarea>
                 <textarea disabled id="morseTextBox" placeholder="Translations here" style="resize: none;"></textarea>
+            </div>
+            <div class="errorDiv" id="errorBox">
+                <span id="invalChar" class="invalChars" style="font-size: 70px ;"></span>
             </div>
             <div id="button-Frame" style="text-align:center;">
                 <button title="Copy Text" id="copyToClip1" class="buttonSet1"><img id="copyToClip2" draggable="false" title="Copy Text" style="height: 50%; color:white;" src="images/clipboardImage.png"></button>
@@ -33,14 +41,15 @@
                 <button id="buttonSetTranslate">Translate</button>
             </div>
         </div>
-    </body>
-    <footer style="background-color: white; display: inline;">
-        <div >
-            <div style="display: flex;">
-                <img draggable="false" style="height:80px; margin-top: 50px;" src="images/github.png">
+        <!--Frame1-->
+        <div class="frame1Cont" id="frame-1">
+            <div loading="eager" class="frame1"></div>
+            <div loading="eager" class="frame2"></div>
+        </div>
+            <div style="display: flex; margin-top:15%;">
+                <img loading="lazy" draggable="false" style="height:80px; margin: 50px 0px 0px 4px;" src="images/github.png">
                 <!-- <h1 style="margin-left:70%;">2022</h1> -->
             </div>
-        </div>
-    </footer>
+    </body>
     <script src="scripts.js"></script>
 </HTML>
