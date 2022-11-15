@@ -127,12 +127,18 @@
 }
 
 .errorDiv{
-    height: 90px; width: 40%;
-    background-color: #fff;
+    height: 70px; width: 50%;
+    background-color: #2b2b2b;
+    border: 3.5px solid red ;
     margin: 15px 10px 0px 10px;
     border-radius: 10px;
+    display: none;
 }
-
+.errorText{
+    display: none;
+    color:red;
+    margin: 10px 0px 0px 20px;
+}
 
 /*ANIMS LIST*/
 @keyframes rotating{

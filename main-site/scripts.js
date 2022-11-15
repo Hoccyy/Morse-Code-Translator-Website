@@ -1,10 +1,10 @@
 //By Hoccyy
-var morseAlphabet = {" ": "\/", "a": " .- ", "b": "  -... ", "c": " -.-. ", "d": " -.. ", "e": " . ", "f": " ..-. ", "g": " --. ", "h": " .... ", "i": " .. ", "j": " .--- ", "k": " -.- ", "l": " .-.. ", "m": " -- ", "n": " -. ", "o": " --- ", "p": " .--. ", "q": " --.- ", "r": " .-. ", "s": " ... ", "t": " - ", "u": " ..- ", "v": " ...- ", "w": " .-- ", "x": " -..- ", "y": " -.-- ", "z": " --.. ", "1": " .---- ", "2": " ..--- ", "3": " ...-- ", "4": " ....- ", "5": " ..... ", "6": " -.... ", "7": " --... ", "8": " ---.. ", "9": " ----. ", "0": " ----- ", ".": " .-.-.- ", ",": " --..-- ", "?": " ..--.. ", "!": " ..--. ", ":": " ---... ", "\"": " .-..-. ", "\'": " .----. ", "=": " -...- "};
+var morseAlphabet = {" ": "\/", "@": ".--.-.", "a": " .- ", "b": "  -... ", "c": " -.-. ", "d": " -.. ", "e": " . ", "f": " ..-. ", "g": " --. ", "h": " .... ", "i": " .. ", "j": " .--- ", "k": " -.- ", "l": " .-.. ", "m": " -- ", "n": " -. ", "o": " --- ", "p": " .--. ", "q": " --.- ", "r": " .-. ", "s": " ... ", "t": " - ", "u": " ..- ", "v": " ...- ", "w": " .-- ", "x": " -..- ", "y": " -.-- ", "z": " --.. ", "1": " .---- ", "2": " ..--- ", "3": " ...-- ", "4": " ....- ", "5": " ..... ", "6": " -.... ", "7": " --... ", "8": " ---.. ", "9": " ----. ", "0": " ----- ", ".": " .-.-.- ", ",": " --..-- ", "?": " ..--.. ", "!": " ..--. ", ":": " ---... ", "\"": " .-..-. ", "\'": " .----. ", "=": " -...- "};
 var morseAlphabet2 = {"----": "0", "|": " ", "/": " ", ".----": "1", "..---": "2", "...--": "3", "....-":"4", ".....":"5", "-....":"6", "--...":"7","---..": "8", "----.": "9", ".-": "a", "-...":"b", "-.-.":"c", "-..": "d", ".":"e", "..-.":"f", "--.":"g", "....":"h", "..":"i", ".---": "j", "-.-": "k", ".-..":"l", "--":"m", "-.":"n", "---":"o", ".--.":"p", "--.-":"q", ".-.":"r", "...":"s", "-": "t", "..-": "u", "...-": "v", ".--": "w", "-..-":"x", "-.--":"y", "--..":"z", ".-.-.-": ".", "--..--":",", "..--..":"?", "..--.":"!", "---...":":", ".-..-.": '"', ".----.":"\'", "-...-": "="};
 
 //var invalidCharALphabet = ["`", "~", "#", "[", "]", "{", "}", "$", "%", "^", "*", "<", ">", "\\", ""];
 
-var alphaNume = {"a": " .- ", "b": "  -... ", "c": " -.-. ", "d": " -.. ", "e": " . ", "f": " ..-. ", "g": " --. ", "h": " .... ", "i": " .. ", "j": " .--- ", "k": " -.- ", "l": " .-.. ", "m": " -- ", "n": " -. ", "o": " --- ", "p": " .--. ", "q": " --.- ", "r": " .-. ", "s": " ... ", "t": " - ", "u": " ..- ", "v": " ...- ", "w": " .-- ", "x": " -..- ", "y": " -.-- ", "z": " --.. ", "1": " .---- ", "2": " ..--- ", "3": " ...-- ", "4": " ....- ", "5": " ..... ", "6": " -.... ", "7": " --... ", "8": " ---.. ", "9": " ----. ", "0": " ----- "}
+var alphaNume = {"@": ".--.-.", "a": " .- ", "b": "  -... ", "c": " -.-. ", "d": " -.. ", "e": " . ", "f": " ..-. ", "g": " --. ", "h": " .... ", "i": " .. ", "j": " .--- ", "k": " -.- ", "l": " .-.. ", "m": " -- ", "n": " -. ", "o": " --- ", "p": " .--. ", "q": " --.- ", "r": " .-. ", "s": " ... ", "t": " - ", "u": " ..- ", "v": " ...- ", "w": " .-- ", "x": " -..- ", "y": " -.-- ", "z": " --.. ", "1": " .---- ", "2": " ..--- ", "3": " ...-- ", "4": " ....- ", "5": " ..... ", "6": " -.... ", "7": " --... ", "8": " ---.. ", "9": " ----. ", "0": " ----- "}
 
 var translateButton = document.getElementById("buttonSetTranslate");
 var boxSelection = true; // true is eng -> Morse and false is opposite
@@ -15,38 +15,45 @@ var engTextBox = document.getElementById("englishTextBox"); var morseTextBox = d
 var invalidString = "";
 var errorLabel = document.getElementById("errorBox");
 var errorMessage = document.getElementById("invalChar");
+var errorText = document.getElementById("textError");
 
 
 
 function translationFunction() {
     var engText = document.getElementById("englishTextBox").value;
-
     
-
-    engText = engText.toLowerCase(); //Debug common letter conversion - alert(engText);
+    engText = engText.toLowerCase();
     let textSize = engText.length;
-
-    // clears invalid characters, Translation mode
-    if (textSize <= 0 ){
+    
+    //
+    
+    //
+    
+    // clears invalid characters label, Translation mode, translation output
+    if ((textSize <= 0) || (engText == "") || (engText == " ")){
         invalidString = "";
         errorMessage.innerHTML = "";
+        errorLabel.style = "display: none;";
+        errorText.style = "display: none;";
+        morseTextBox.value = "";
     }
 
     function invalidChars(truthTest){
         if (engText.length == 0){invalidString = ""}else {
         if (truthTest){
-        for (var xyz = 0; xyz < engText.length; xyz++){
-            if (!morseAlphabet[engText[xyz]]){
-                //alert (engText[xyz]);
-                if (!(invalidString.includes(engText[xyz]))){
-                    //alert(engText[xyz]);
-                    invalidString += engText[xyz];
-                }
-            };
-        }
+            for (var xyz = 0; xyz < engText.length; xyz++){
+                if (!morseAlphabet[engText[xyz]]){
+                    //alert (engText[xyz]);
+                    if (!(invalidString.includes(engText[xyz]))){
+                        //alert(engText[xyz]);
+                        invalidString += engText[xyz];
+                    }
+                };
+            }
         }
         if (invalidString.length>0){//alert("Inval chars : " + invalidString);
-        errorMessage.innerHTML = invalidString; }}
+            errorMessage.innerHTML = invalidString; }
+            if (invalidString.length > 0) {errorLabel.style = "display: block;" ; errorText.style = "display:block;"}}
     }
 
 
@@ -113,6 +120,7 @@ function translationFunction() {
     // Det.
 
     // Shows invalid characters
+    deletedInval(boxSelection);
     invalidChars(boxSelection);
     //
 

@@ -1,0 +1,22 @@
+#mainBG{
+    background-color: black;
+    height: 160px; width: 23%;
+    border-radius: 80px;
+}
+
+#secondBG{
+    background-color: rgb(241, 241, 241);
+    height: 140px; width: 45%;
+    border-radius: 100%;
+    position: relative;
+    top: 6.5%; left: 2%;
+    
+}
+
+.toggleContainer{
+    margin-top: 20%;
+    margin-left: 30%;
+}
+@keyframes toggleMode1 {
+    
+}
